@@ -1,5 +1,3 @@
-package graphs;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,9 +5,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * @author <Your Name Here>
+ * @author <Joanne Lin>
  */
-public class SymbolGraph<E> implements Graph<E>
+public class SymbolGraph<E> 
 {
 	private Map<E, List<E>> edges;
 	private int numberOfEdges;
@@ -19,13 +17,13 @@ public class SymbolGraph<E> implements Graph<E>
 		edges = new TreeMap<E, List<E>>();
 	}
 
-	@Override
+	
 	public int getNumberOfVerticies()
 	{
 		return edges.size();
 	}
 
-	@Override
+	
 	public int getNumberOfEdges()
 	{
 		return numberOfEdges;
@@ -41,7 +39,6 @@ public class SymbolGraph<E> implements Graph<E>
 		return true;
 	}
 	
-	@Override
 	public boolean addEdge(E from, E to)
 	{
 		if (edges.get(from)!=null && edges.get(to)!=null) {
@@ -53,9 +50,6 @@ public class SymbolGraph<E> implements Graph<E>
 			edges.get(to).add(from);
 			
 			numberOfEdges++;
-			
-			System.out.println("fuck");
-			System.out.println("number of edges after add"+getNumberOfEdges());
 			return true;
 		}
 		
@@ -65,14 +59,12 @@ public class SymbolGraph<E> implements Graph<E>
 		
 	}
 
-	@Override
 	public Collection<E> getAdjacent(E to)
 	{
 		if (edges.get(to)==null) {return null;}
 		return edges.get(to);
 	}
 
-	@Override
 	public boolean removeEdge(E from, E to)
 	{
 		if (edges.get(from)==null) {return false;}
