@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -59,7 +58,7 @@ public class SymbolGraph<E>
 		
 	}
 
-	public Collection<E> getAdjacent(E to)
+	public List<E> getAdjacent(E to)
 	{
 		if (edges.get(to)==null) {return null;}
 		return edges.get(to);
