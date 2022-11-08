@@ -21,7 +21,18 @@ public class Dijkstra {
   }
 
 private static int findMinDistance(int[] distance, boolean[] visitedVertex) {
-	// TODO Auto-generated method stub
-	return 0;
+	
+	int ShortestDistance = Integer.MAX_VALUE;
+        int ShortestDistanceVertex = -1;
+	
+        for (int i =0; i < distance.length; i++){
+            //if vertex is not visited and the distance is the minimum.
+            if(!visitedVertex[i] && distance[i] < ShortestDistance){
+		//then find the min element of an array
+                ShortestDistance = distance[i];
+                ShortestDistanceVertex = i;
+            }
+        }
+        return ShortestDistanceVertex;
 }
 }
