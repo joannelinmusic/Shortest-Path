@@ -77,7 +77,7 @@ public class SymbolGraph<E>
 		if (!edges.get(from).containsKey(to)) {return false;}
 		numberOfEdges--;
 		
-		edges.get(from).remove(key);
+		edges.get(from).remove(to);
 		edges.get(to).remove(from);
 		return true;
 	}	
