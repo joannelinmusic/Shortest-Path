@@ -1,43 +1,70 @@
 package graphs;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class Dijkstra {
+	
+    class temp{
+        int vertex;
+        int distance; // current distance of source to vertex
+        public temp(int vertex, int distance){
+            this.vertex = vertex;
+            this.distance =  distance;
+        }
+    }
 
-  public static void dijkstra(SymbolGraph<Integer> graph, int source) {
+  public static void dijkstra(SymbolGraph<Integer> NewGraph, int source) {
 	  
-    int count = graph.getNumberOfVerticies();
+    int count = NewGraph.getNumberOfVerticies();
     boolean[] visitedVertex = new boolean[count];
     int[] distance = new int[count];
-	  
+    
     for (int i = 0; i < count; i++) {
+        
       visitedVertex[i] = false;
       distance[i] = Integer.MAX_VALUE;
     }
+    
+       // creating priority object to store nodes with their distance from source
+        PriorityQueue<temp> objectQ = new PriorityQueue<>((Comparator.comparingInt(o -> o.distance)));
+	  
+        // Distance of self loop is zero
+        distance[source] = 0;
+	  
+        //now adding source node to priority objectQ
+        objectQ.add(new temp(source,distance[source]));
 
-    // Distance of self loop is zero
-    distance[source] = 0;
-    for (int i = 0; i < count; i++) {
+        while (objectQ.size()>0){
 
-      // Update the distance between neighbouring vertex and source vertex
-      int u = findMinDistance(distance, visitedVertex);
-      visitedVertex[u] = true;
-}
-  }
+            temp NewNode = objectQ.poll(); // to get out the minimum distance node from priority objectQ
 
-private static int findMinDistance(int[] distance, boolean[] visitedVertex) {
+            if(visitedVertex[NewNode.vertex])continue; // if NewNode is visited, do not add it or skip it
+
+            visitedVertex[NewNode.vertex] = true; // if not visited mark as visited 
+		
+	    // creating new map that take edges from current nodes
+
+            Map<Integer, Integer> adjacentEdges = NewGraph.getAdjacent(NewNode.vertex); 
 	
-	int ShortestDistance = Integer.MAX_VALUE;
-        int ShortestDistanceVertex = -1;
-	
-        for (int i =0; i < distance.length; i++){
-            //if vertex is not visited and the distance is the minimum.
-            if(!visitedVertex[i] && distance[i] < ShortestDistance){
-		//then find the min element of an array
-                ShortestDistance = distance[i];
-                ShortestDistanceVertex = i;
+	    // now loop through the adjacent nodes 
+            for(int adjacentNode : adjacentEdges.keySet()){// adjacent nodes
+
+                if(visitedVertex[adjacentNode])continue; // if adjacent node visited, do not add or skip it
+		    
+		 // if new distance of adjacent new node is less than already noted distance than change id and add to objectQ
+                if(NewNode.distance + adjacentEdges.get(adjacentNode) < distance[adjacentNode]){ 
+                    // updat distance                                                                    
+                    distance[adjacentNode] = NewNode.distance + adjacentEdges.get(adjacentNode);
+			
+		  //  finally add the shortest distance to objectQ
+                    objectQ.add(new temp(adjacentNode,distance[adjacentNode])); 
+                }
             }
         }
-	
-        return ShortestDistanceVertex;
+        System.out.println(Arrays.toString(distance));
+// a helpful website we used to create the dijkstra method https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
 }
  public static void main(String[] args) {
      
@@ -50,12 +77,12 @@ private static int findMinDistance(int[] distance, boolean[] visitedVertex) {
                 
         // use loop to add vertex to graph class
 	 
-        for (int i=0;i<NewGraph.length;i++)draw.addVertex(i);
+        for (int i=0;i < NewGraph.length;i++)draw.addVertex(i);
         
         // use loop to add edges to edges class
 	 
-        for (int i=0;i<NewGraph.length;i++){
-            for(int j = 0;j<NewGraph.length;j++){
+        for (int i=0; i< NewGraph.length;i++){
+            for(int j = 0;j < NewGraph.length;j++){
                 if(NewGraph[i][j]!=0){
 			
                     draw.addEdge(i,j,NewGraph[i][j]);
@@ -64,6 +91,6 @@ private static int findMinDistance(int[] distance, boolean[] visitedVertex) {
         }
         Dijkstra D= new Dijkstra();
 
-        D.dijkstra(NewGraph, 0); //Find and print min distance of all other nodes from node 0
+        D.dijkstra(NewGraph, 0); //print short distance of all other nodes from node 0
     }
 }
