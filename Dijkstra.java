@@ -1,10 +1,13 @@
 package graphs;
+
 public class Dijkstra {
 
   public static void dijkstra(SymbolGraph<Integer> graph, int source) {
+	  
     int count = graph.getNumberOfVerticies();
     boolean[] visitedVertex = new boolean[count];
     int[] distance = new int[count];
+	  
     for (int i = 0; i < count; i++) {
       visitedVertex[i] = false;
       distance[i] = Integer.MAX_VALUE;
@@ -45,13 +48,16 @@ private static int findMinDistance(int[] distance, boolean[] visitedVertex) {
                 { 0, 0, 3, 0, 0, 2, 0 }, { 0, 3, 0, 0, 2, 0, 1 },
                 { 0, 0, 0, 1, 0, 1, 0 } };
                 
-        // adding vertex to graph class
+        // use loop to add vertex to graph class
+	 
         for (int i=0;i<NewGraph.length;i++)draw.addVertex(i);
         
-        // adding edges to edges class
+        // use loop to add edges to edges class
+	 
         for (int i=0;i<NewGraph.length;i++){
             for(int j = 0;j<NewGraph.length;j++){
                 if(NewGraph[i][j]!=0){
+			
                     draw.addEdge(i,j,NewGraph[i][j]);
                 }
             }
