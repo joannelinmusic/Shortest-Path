@@ -1,3 +1,4 @@
+package Shortest-Path;
 import java.util.Scanner;
 
 public class MainClass {
@@ -6,7 +7,7 @@ public class MainClass {
         // SymbolGraph<String> userGraph = new SymbolGraph<String>();
         // Scanner myObj = new Scanner(System.in);
         
-        Double userName = myObj.nextDouble();  // Read user input
+        //Double userName = myObj.nextDouble();  // Read user input
         
         // System.out.println("What's your name? " + userName);
 
