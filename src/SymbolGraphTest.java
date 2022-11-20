@@ -1,10 +1,5 @@
-package graphs;
-
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Collection;
-import org.junit.Test;
 
 public class SymbolGraphTest {
 	@Test

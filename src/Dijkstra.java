@@ -1,71 +1,70 @@
-package graphs;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
+
 	
-    class temp{
+    static class Temp{
         int vertex;
         int distance; // current distance of source to vertex
-        public temp(int vertex, int distance){
+        public Temp(int vertex, int distance){
             this.vertex = vertex;
             this.distance =  distance;
         }
     }
 
-  public static void dijkstra(SymbolGraph<Integer> NewGraph, int source) {
-	  
-    int count = NewGraph.getNumberOfVerticies();
-    boolean[] visitedVertex = new boolean[count];
-    int[] distance = new int[count];
-    
-    for (int i = 0; i < count; i++) {
+    public void dijkstra(SymbolGraph<Integer> NewGraph, int source) {
         
-      visitedVertex[i] = false;
-      distance[i] = Integer.MAX_VALUE;
-    }
+        int count = NewGraph.getNumberOfVerticies();
+        boolean[] visitedVertex = new boolean[count];
+        int[] distance = new int[count];
+        
+        for (int i = 0; i < count; i++) {
+            visitedVertex[i] = false;
+            distance[i] = Integer.MAX_VALUE;
+        }
+        
+        // creating priority object to store nodes with their distance from source
+        PriorityQueue<Temp> objectQ = new PriorityQueue<>((Comparator.comparingInt(o -> o.distance)));
     
-       // creating priority object to store nodes with their distance from source
-        PriorityQueue<temp> objectQ = new PriorityQueue<>((Comparator.comparingInt(o -> o.distance)));
-	  
         // Distance of self loop is zero
         distance[source] = 0;
-	  
+        
         //now adding source node to priority objectQ
-        objectQ.add(new temp(source,distance[source]));
+        objectQ.add(new Temp(source, distance[source]));
 
         while (objectQ.size()>0){
 
-            temp NewNode = objectQ.poll(); // to get out the minimum distance node from priority objectQ
+            Temp NewNode = objectQ.poll(); // to get out the minimum distance node from priority objectQ
 
-            if(visitedVertex[NewNode.vertex])continue; // if NewNode is visited, do not add it or skip it
+            if(visitedVertex[NewNode.vertex]) continue; // if NewNode is visited, do not add it or skip it
 
             visitedVertex[NewNode.vertex] = true; // if not visited mark as visited 
-		
-	    // creating new map that take edges from current nodes
+        
+            // creating new map that take edges from current nodes
 
             Map<Integer, Integer> adjacentEdges = NewGraph.getAdjacent(NewNode.vertex); 
-	
-	    // now loop through the adjacent nodes 
+    
+            // now loop through the adjacent nodes 
             for(int adjacentNode : adjacentEdges.keySet()){// adjacent nodes
 
                 if(visitedVertex[adjacentNode])continue; // if adjacent node visited, do not add or skip it
-		    
-		 // if new distance of adjacent new node is less than already noted distance than change id and add to objectQ
+            
+                // if new distance of adjacent new node is less than already noted distance than change id and add to objectQ
                 if(NewNode.distance + adjacentEdges.get(adjacentNode) < distance[adjacentNode]){ 
                     // updat distance                                                                    
                     distance[adjacentNode] = NewNode.distance + adjacentEdges.get(adjacentNode);
-			
-		  //  finally add the shortest distance to objectQ
-                    objectQ.add(new temp(adjacentNode,distance[adjacentNode])); 
+            
+                    //  finally add the shortest distance to objectQ
+                    objectQ.add(new Temp(adjacentNode,distance[adjacentNode])); 
                 }
             }
         }
-        System.out.println(Arrays.toString(distance));
-// a helpful website we used to create the dijkstra method https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
-}
+            System.out.println(Arrays.toString(distance));
+    // a helpful website we used to create the dijkstra method https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
+    }
  public static void main(String[] args) {
      
         SymbolGraph<Integer> draw = new SymbolGraph<>();
@@ -91,6 +90,8 @@ public class Dijkstra {
         }
         Dijkstra D= new Dijkstra();
 
-        D.dijkstra(NewGraph, 0); //print short distance of all other nodes from node 0
+        D.dijkstra(draw, 0); //print short distance of all other nodes from node 0
+
+        
     }
 }
