@@ -65,10 +65,10 @@ public class SymbolGraph<E>
 		
 	}
 
-	public Set<E> getAdjacent(E to)
+	public Map<E, Integer> getAdjacent(E to)
 	{
-		if (edges.get(to)==null || dges.get(to).isEmpty()) {return null;}
-		return edges.get(to).keySet();
+		if (edges.get(to)==null || edges.get(to).isEmpty()) {return null;}
+		return edges.get(to);
 	}
 
 	public boolean removeEdge(E from, E to)
