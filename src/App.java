@@ -1,6 +1,4 @@
 import java.util.Scanner;
-
-import java.util.Arrays;
 import java.util.Map;
 
 
@@ -32,8 +30,6 @@ public class App {
         }
 
     }
-
-
 
     private static void addHelper(){
         //add first vertex
