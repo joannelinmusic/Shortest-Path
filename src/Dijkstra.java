@@ -1,5 +1,3 @@
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -64,26 +62,6 @@ public class Dijkstra {
         draw.addEdge("A","C",2);
         draw.addEdge("A","B",2);
         draw.addEdge("B","C",1);
-
-        // int NewGraph[][] = new int[][] { { 0, 0, 1, 2, 0, 0, 0 }, { 0, 0, 2, 0, 0, 3, 0 },
-        //         { 1, 2, 0, 1, 3, 0, 0 },{ 2, 0, 1, 0, 0, 0, 1 },
-        //         { 0, 0, 3, 0, 0, 2, 0 }, { 0, 3, 0, 0, 2, 0, 1 },
-        //         { 0, 0, 0, 1, 0, 1, 0 } };
-                
-        // // use loop to add vertex to graph class
-	 
-        // for (int i=0;i < NewGraph.length;i++)draw.addVertex(i);
-        
-        // // use loop to add edges to edges class
-	 
-        // for (int i=0; i< NewGraph.length;i++){
-        //     for(int j = 0;j < NewGraph.length;j++){
-        //         if(NewGraph[i][j]!=0){
-			
-        //             draw.addEdge(i,j,NewGraph[i][j]);
-        //         }
-        //     }
-        // }
 
         Dijkstra D= new Dijkstra();
 
