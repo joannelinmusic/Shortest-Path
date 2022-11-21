@@ -28,8 +28,10 @@ public class App {
         System.out.println("Add your first vertex: \n Type 'Vertex: your vertex name'");
         String input = scan.nextLine();
         
-
+        //add more vertex and edge
         while (!input.toLowerCase().contains("done")){
+
+            //user input will contain either vertex or edge to determine what to add
             if (input.contains("Vertex")){
                 String[] vertexSplit = input.split(" ");
                 userDraw.addVertex(vertexSplit[1]);
@@ -41,7 +43,7 @@ public class App {
             }
             
             System.out.println("You currently have " + userDraw.getNumberOfVerticies() + " vertices and " + userDraw.getNumberOfEdges() + " edges.");
-            //add more vertex and edge
+            
             if (userDraw.getNumberOfVerticies()>=2){
                 System.out.println("Add your next vertex: (See format below) \n Adding a Vertex: 'Vertex: your vertex name' \n Adding an edge: (all seperated by space) 'Edge: Vertex_1 Vertex_2 Weight(integer)' \n If you're done: Type 'done' ");
             } else {
