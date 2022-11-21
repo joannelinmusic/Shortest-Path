@@ -1,14 +1,22 @@
 import java.util.Scanner;
 
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        //create scanner class
         Scanner scan = new Scanner(System.in);
-        System.out.println("Name: ");
-        String name = scan.next();
-        // System.out.println("Age: ");
-        // int age = scan.nextInt();
-        System.out.println("Name:" + " " + name);
-        // scan.close();
+        String userName;
+        System.out.println("Enter Name: ");
+        userName = scan.nextLine();   
+        
+        System.out.println("Hi " + userName + ", Let's create a graph!");
+
+        //Direct user to create a graph
+        SymbolGraph<Integer> userDraw = new SymbolGraph<>();
+        System.out.println("Your currently have " + userDraw.getNumberOfVerticies() + "vertices");
+
+
+
+        
     }
 }

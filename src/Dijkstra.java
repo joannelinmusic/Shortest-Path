@@ -76,7 +76,7 @@ public class Dijkstra {
                 
         // use loop to add vertex to graph class
 	 
-        for (int i=0;i < NewGraph.length;i++)draw.addVertex(i);
+        for (int i=0;i < NewGraph.length;i++) draw.addVertex(i);
         
         // use loop to add edges to edges class
 	 
