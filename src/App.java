@@ -14,8 +14,8 @@ public class App {
         //Direct user to create a graph
         SymbolGraph<String> userDraw = new SymbolGraph<>();
         System.out.println("Add your first vertex: ");
-        String vertex = scan.nextLine();
-        userDraw.addVertex(vertex);
+        String input = scan.nextLine();
+        userDraw.addVertex(input);
 
         System.out.println("Would you like to add more vertex? (Enter only true or false)");
         Boolean addBoolean = scan.nextBoolean();
@@ -23,15 +23,23 @@ public class App {
         while (addBoolean){
             scan.nextLine();
             System.out.println("Add your next vertex: ");
-            vertex = scan.nextLine();
-            userDraw.addVertex(vertex);
+            input = scan.nextLine();
+            userDraw.addVertex(input);
             System.out.println("Would you like to add more vertex? (Enter only true or false)");
             addBoolean = scan.nextBoolean();
         }
 
         System.out.println("Your currently have " + userDraw.getNumberOfVerticies() + " vertices");
 
-
+        scan.nextLine();
+        System.out.println("Are you finished adding vertex and edge? ");
+        addBoolean = scan.nextBoolean();
+        if (addBoolean){
+            if (userDraw.getNumberOfEdges()<1 || userDraw.getNumberOfVerticies()<2){
+                System.out.println("Are you finished adding vertex and edge? ");
+            }
+        }
+        
 
         
     }
